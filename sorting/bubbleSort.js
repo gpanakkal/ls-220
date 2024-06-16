@@ -1,7 +1,8 @@
 const bubbleSort = (arr) => {
   if (arr.length === 1) return arr;
   for (let i = 0; i < arr.length - 1; i += 1) {
-    [arr[i], arr[i + 1]] = [arr[i], arr[i + 1]].sort(((a, b) => a - b));
+    const compareValues = arr.slice(i, i + 2);
+    [arr[i], arr[i + 1]] = [Math.min(compareValues), Math.max(compareValues)];
   }
   return bubbleSort(arr.slice(0, arr.length - 1)).concat(arr[arr.length - 1]);
 }
