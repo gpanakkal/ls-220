@@ -21,15 +21,15 @@ Rules:
 const maximumSum = (nums, k) => {
   if (nums.length < k || k < 1) return null;
   let left = 0, right = k - 1;
-  let max = nums[0];
-  for (let i = 1; i <= right; i += 1) max += nums[i];
-
+  let windowSum = nums[0];
+  for (let i = 1; i <= right; i += 1) windowSum += nums[i];
+  let max = windowSum;
   while (right < nums.length - 1) {
-    let sum = max - nums[left];
+    windowSum -= nums[left];
     left += 1;
     right += 1;
-    sum += nums[right];
-    if (sum > max) max = sum;
+    windowSum += nums[right];
+    if (windowSum > max) max = windowSum;
   }
   return max;
 }
@@ -75,5 +75,6 @@ const examples = [
 
 const results = examples.forEach(({ in: input, out: expected }) => {
   const observed = maximumSum(...input);
-                               expected;
+  observed;
+  expected;
 });
